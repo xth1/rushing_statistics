@@ -16,7 +16,7 @@ defmodule Nfl.Repo.Migrations.CreatePlayerRushingStatistics do
       add :first_down, :float, default: 0.0
       add :first_down_pct, :float, default: 0.0
       add :twenty_plus_yds, :float, default: 0.0
-      add :fourty_plus_yeds, :float, default: 0.0
+      add :forty_plus_yds, :float, default: 0.0
       add :fum, :float, default: 0.0
 
       timestamps()
