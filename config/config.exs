@@ -13,10 +13,10 @@ config :nfl,
 # Configures the endpoint
 config :nfl, NflWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "iY+v8lIUKDC39U/lD6NoPXxeGinXte0hzfQX+9w+97ys98+gD6na6fZBlDzHxA2D",
+  secret_key_base: "dLi/d5EfmuZ/lOSrrlIHeTi6DdaDKg+6oVJGrFUbBfA1/iC8GeLaTcwoMaDaIKkQ",
   render_errors: [view: NflWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Nfl.PubSub,
-  live_view: [signing_salt: "zQIIx3wh"]
+  live_view: [signing_salt: "FmfOoCAj"]
 
 # Configures Elixir's Logger
 config :logger, :console,

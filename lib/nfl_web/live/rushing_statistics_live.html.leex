@@ -1,0 +1,10 @@
+<section class="phx-hero">
+  <h1> Rushing statistics </h1>
+</section>
+
+<%= for st <- @statistics do %>
+  <p>
+    <%= st[:name] %>
+    <%= st[:avg] %>
+  </p>
+<% end %>

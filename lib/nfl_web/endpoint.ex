@@ -7,7 +7,7 @@ defmodule NflWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_nfl_key",
-    signing_salt: "5rq+wgjL"
+    signing_salt: "5uJhypN/"
   ]
 
   socket "/socket", NflWeb.UserSocket,
