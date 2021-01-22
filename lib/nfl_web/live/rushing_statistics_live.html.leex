@@ -1,10 +1,65 @@
-<section class="phx-hero">
+<div class="jumbotron">
   <h1> Rushing statistics </h1>
-</section>
+</div>
 
-<%= for st <- @statistics do %>
-  <p>
-    <%= st[:name] %>
-    <%= st[:avg] %>
-  </p>
-<% end %>
+<div class="row">
+  <div class="col-md-9 col-sm-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Player name" aria-label="Player name" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <div class="form-group row">
+      <label for="sortingSelectBox" class="col-3 col-form-label">Sort By</label>
+      <select id="sortingSelectBox" class="col-9 custom-select custom-select-lg">
+        <option selected>Total Rushing Yards</option>
+        <option value="1">Longest Rush</option>
+        <option value="2"> Total Rushing Touchdowns</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<span> Displaying <%= Enum.count(@statistics) %> players. </span>
+<b> Add export CSV button (with icon)</b>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Player</th>
+      <th scope="col">Team</th>
+      <th scope="col">Att/G</th>
+      <th scope="col">Att</th>
+      <th scope="col">Yds</th>
+      <th scope="col">Avg</th>
+      <th scope="col">Yds/G</th>
+      <th scope="col">TD</th>
+      <th scope="col">Lng</th>
+      <th scope="col">1st</th>
+      <th scope="col">1st%</th>
+      <th scope="col">20+</th>
+      <th scope="col">40+</th>
+      <th scope="col">FUM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for st <- @statistics do %>
+      <tr>
+        <td><%= st[:name] %></td>
+        <td><%= st[:team] %></td>
+        <td><%= st[:att_g] %></td>
+        <td><%= st[:att] %></td>
+        <td><%= st[:yds] %></td>
+        <td><%= st[:avg] %></td>
+        <td><%= st[:yds_g] %></td>
+        <td><%= st[:td] %></td>
+        <td><%= st[:lng] %></td>
+        <td><%= st[:first_down] %></td>
+        <td><%= st[:first_down_pct] %></td>
+        <td><%= st[:twenty_plus_yds] %></td>
+        <td><%= st[:forty_plus_yds] %></td>
+        <td><%= st[:fum] %></td>
+      </tr>
+    <% end %>
