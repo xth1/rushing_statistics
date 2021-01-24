@@ -4,12 +4,29 @@
 
 <div class="row">
   <div class="col-md-9 col-sm-6">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Player name" aria-label="Player name" aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">Search</button>
+    <form phx-change="suggest" phx-submit="search">
+      <div class="input-group">
+
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="Player name"
+            aria-label="Player name"
+            list="suggestions"
+            aria-describedby="basic-addon2"
+            phx-debounce="600"
+            autocomplete="off">
+          <datalist id="suggestions">
+            <%= for %{name: name} <- @suggestions do %>
+              <option value="<%= name %>"><%= name %></option>
+            <% end %>
+          </datalist>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </div>
       </div>
-    </div>
+    </form>
   </div>
   <div class="col-md-3 col-sm-6">
     <div class="form-group row">

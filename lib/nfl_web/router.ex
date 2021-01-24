@@ -2,22 +2,23 @@ defmodule NflWeb.Router do
   use NflWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_live_flash
-    plug :put_root_layout, {NflWeb.LayoutView, :root}
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_live_flash)
+    plug(:put_root_layout, {NflWeb.LayoutView, :root})
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/", NflWeb do
-    pipe_through :browser
+    pipe_through(:browser)
 
-    live "/", RushingStatisticsLive, :index
+    live("/", RushingStatisticsLive, :index)
+    live("/page_live", PageLive, :index)
   end
 
   # Other scopes may use custom stacks.
@@ -36,8 +37,8 @@ defmodule NflWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through :browser
-      live_dashboard "/dashboard", metrics: NflWeb.Telemetry
+      pipe_through(:browser)
+      live_dashboard("/dashboard", metrics: NflWeb.Telemetry)
     end
   end
 end
