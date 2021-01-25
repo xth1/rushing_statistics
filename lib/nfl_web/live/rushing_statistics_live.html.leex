@@ -58,7 +58,13 @@
 <div class="nav-bar">
   <nav  aria-label="Page navigation">
     <ul class="pagination">
-      <li class="page-item <%= if @page.page_number == 1, do: "disabled", else: "" %>"><a class="page-link" href="#">Previous</a></li>
+      <li
+        class="page-item <%= if @page.page_number == 1, do: "disabled", else: "" %>"
+        phx-click="change-page"
+        phx-value-page-number="<%= @page.page_number - 1%>"
+        >
+          <a class="page-link" href="#">Previous</a>
+      </li>
       <%= for p <- 1..@page.total_pages do %>
         <li
           phx-click="change-page" phx-value-page-number="<%=p%>"
@@ -66,7 +72,12 @@
           <a class="page-link" href="#"><%=p%></a>
         </li>
       <% end %>
-      <li class="page-item <%= if @page.page_number == @page.total_pages, do: "disabled", else: "" %>"><a class="page-link" href="#">Next</a></li>
+      <li
+       phx-click="change-page"
+       phx-value-page-number="<%= @page.page_number + 1%>"
+      class="page-item <%= if @page.page_number == @page.total_pages, do: "disabled", else: "" %>">
+        <a class="page-link" href="#">Next</a>
+      </li>
     </ul>
   </nav>
 </div>
