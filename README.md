@@ -1,4 +1,4 @@
-# Rush statistics
+# Rushing statistics
 Look at the `demo.mp4` file.
 
 ### Pre-requisites
