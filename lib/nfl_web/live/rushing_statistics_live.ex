@@ -1,9 +1,6 @@
 defmodule NflWeb.RushingStatisticsLive do
   use NflWeb, :live_view
-  alias Nfl.Repo
-  alias Nfl.Player.RushingStatistics
   alias Nfl.Player.RushingStatisticsHelper
-  import Ecto.Query, only: [from: 2]
 
   def mount(_params, %{}, socket) do
     {:ok,
@@ -35,7 +32,7 @@ defmodule NflWeb.RushingStatisticsLive do
   end
 
   defp get_suggestions_assigns(
-         %{query: state_query, suggestions: suggestions} = assigns,
+         %{query: state_query} = _assigns,
          %{"query" => query} = _form_data
        ) do
     if query != state_query do
@@ -46,7 +43,7 @@ defmodule NflWeb.RushingStatisticsLive do
   end
 
   defp get_statistics_assigns(
-         %{order_by: state_order_by, query: state_query} = assigns,
+         %{order_by: state_order_by, query: state_query} = _assigns,
          %{"order_by" => order_by} = _form_data
        ) do
     if order_by != state_order_by do
