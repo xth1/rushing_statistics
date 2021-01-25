@@ -2,8 +2,6 @@
   <h1> Rushing statistics </h1>
 </div>
 
-<b>searched_query</b>: <%= @query %>
-
 <form phx-change="change" phx-submit="search">
   <div class="row">
 
@@ -29,6 +27,7 @@
             <button class="btn btn-outline-secondary" type="submit">Search</button>
           </div>
         </div>
+        <b>Current search</b>: <%= @query %>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="form-group row">
