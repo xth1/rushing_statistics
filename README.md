@@ -1,8 +1,8 @@
-# Rush statistics
+# Rushing statistics
 Look at the `demo.mp4` file.
 
 ### Pre-requisites
-This application requires [PostgreSQL](https://www.postgresql.org/) to be installed (version 13). 
+This application requires [PostgreSQL](https://www.postgresql.org/) to be installed (it has been tested with version 13.1). 
 
 ### Installation and running this solution
 Install the following programming language dependencies:
