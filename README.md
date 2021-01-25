@@ -1,6 +1,5 @@
 # Rush statistics
-
-## Demo
+Look at the `demo.mp4` file.
 
 ### Pre-requisites
 This application requires [PostgreSQL](https://www.postgresql.org/) to be installed (version 13). 
