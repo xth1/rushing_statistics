@@ -11,7 +11,8 @@ defmodule Nfl.Player.RushingStatistics do
     field(:first_down_pct, :float)
     field(:forty_plus_yds, :float)
     field(:fum, :float)
-    field(:lng, :string)
+    field(:lng, :float)
+    field(:lng_td, :boolean)
     field(:name, :string)
     field(:position, :string)
     field(:td, :float)
@@ -37,6 +38,7 @@ defmodule Nfl.Player.RushingStatistics do
       :avg,
       :td,
       :lng,
+      :lng_td,
       :first_down,
       :first_down_pct,
       :twenty_plus_yds,
@@ -54,6 +56,7 @@ defmodule Nfl.Player.RushingStatistics do
       :avg,
       :td,
       :lng,
+      :lng_td,
       :first_down,
       :first_down_pct,
       :twenty_plus_yds,

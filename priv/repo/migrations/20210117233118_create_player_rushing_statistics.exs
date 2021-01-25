@@ -12,7 +12,8 @@ defmodule Nfl.Repo.Migrations.CreatePlayerRushingStatistics do
       add :yds_g, :float, defalt: 0.0
       add :avg, :float, default: 0.0
       add :td, :float, default: 0.0
-      add :lng, :string, size: 64
+      add :lng, :float, default: 0.0
+      add :lng_td, :boolean, default: false
       add :first_down, :float, default: 0.0
       add :first_down_pct, :float, default: 0.0
       add :twenty_plus_yds, :float, default: 0.0

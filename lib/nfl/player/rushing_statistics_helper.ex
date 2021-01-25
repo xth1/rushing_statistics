@@ -54,6 +54,7 @@ defmodule Nfl.Player.RushingStatisticsHelper do
           forty_plus_yds: s.forty_plus_yds,
           fum: s.fum,
           lng: s.lng,
+          lng_td: s.lng_td,
           name: s.name,
           position: s.position,
           team: s.team,
@@ -65,6 +66,21 @@ defmodule Nfl.Player.RushingStatisticsHelper do
         order_by: ^rule
       )
 
-    query |> Repo.all()
+    result = query |> Repo.all()
+    for r <- result do
+      %{r | lng: format_lng(r[:lng], r[:lng_td])}
+    end
+  end
+
+  defp format_lng(lng, true = _lng_td), do: "#{conditional_round(lng)}T"
+
+  defp format_lng(lng, false = _lng_td), do: "#{conditional_round(lng)}"
+
+  defp conditional_round(number) when is_float(number) do
+    if (number - trunc(number) == 0.0) do
+      round(number)
+    else
+      number
+    end
   end
 end

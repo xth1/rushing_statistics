@@ -16,6 +16,13 @@ import Jason
 
 json_file = "#{__DIR__}/data/rushing.json"
 
+has_touch_down = fn(lng_str) -> String.match?(lng_str, ~r/T$/) end
+lng_number = fn(lng_str) ->
+  case Float.parse(lng_str) do
+    {num, _} -> num
+    {:error} -> 0.0
+  end
+end
 
 with {:ok, body} <- File.read(json_file),
      {:ok, rushing_statistics} <- Jason.decode(body) do
@@ -29,7 +36,8 @@ with {:ok, body} <- File.read(json_file),
       first_down_pct: Utils.to_float(rs["1st%"]),
       forty_plus_yds: Utils.to_float(rs["40+"]),
       fum: Utils.to_float(rs["FUM"]),
-      lng: Utils.to_string(rs["Lng"]),
+      lng: lng_number.(Utils.to_string(rs["Lng"])),
+      lng_td: has_touch_down.(Utils.to_string(rs["Lng"])),
       name: rs["Player"],
       position: rs["Pos"],
       td: Utils.to_float(rs["TD"]),
