@@ -1,8 +1,17 @@
+<style>
+  .nav-bar  {
+    display: flex;
+    justify-content: center;
+  }
+  .form {
+    margin-bottom: 1rem
+  }
+</style>
 <div class="jumbotron">
   <h1> Rushing statistics </h1>
 </div>
 
-<form phx-change="change" phx-submit="search">
+<form phx-change="change" phx-submit="search" class="form">
   <div class="row">
 
       <div class="col-md-9 col-sm-6">
@@ -27,7 +36,9 @@
             <button class="btn btn-outline-secondary" type="submit">Search</button>
           </div>
         </div>
-        <b>Current search</b>: <%= @query %>
+        <%= if @query != "" do%>
+          <b>Current search</b>: <%= @query %>. <a href="" phx-click="clear-search" >Clear search</a>
+        <% end %>
       </div>
       <div class="col-md-3 col-sm-6">
         <div class="form-group row">
@@ -42,8 +53,23 @@
   </div>
 </form>
 
-<span> Displaying <%= Enum.count(@statistics) %> players. </span>
-<a href="/csv?<%= URI.encode_query(%{query: @query, order_by: @order_by}) %>" target="_blank">Download CSV</a>
+<span> Displaying <b><%= Enum.count(@statistics) %></b> players from <b><%=@page.total_entries%></b> players found.</span>
+<a href="/csv?<%= URI.encode_query(%{query: @query, order_by: @order_by}) %>" target="_blank">Download CSV file</a>
+<div class="nav-bar">
+  <nav  aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item <%= if @page.page_number == 1, do: "disabled", else: "" %>"><a class="page-link" href="#">Previous</a></li>
+      <%= for p <- 1..@page.total_pages do %>
+        <li
+          phx-click="change-page" phx-value-page-number="<%=p%>"
+          class="page-item <%= if p == @page.page_number, do: "active", else: "" %>">
+          <a class="page-link" href="#"><%=p%></a>
+        </li>
+      <% end %>
+      <li class="page-item <%= if @page.page_number == @page.total_pages, do: "disabled", else: "" %>"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -82,3 +108,5 @@
         <td><%= st[:fum] %></td>
       </tr>
     <% end %>
+  </tbody>
+</table>

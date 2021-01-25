@@ -10,7 +10,7 @@ defmodule NflWeb.RushingStatisticsController do
   end
 
   defp generate_csv(query, order_by) do
-    statistics = RushingStatisticsHelper.by_name_prefix(query, order_by)
+    {statistics, _} = RushingStatisticsHelper.by_name_prefix(query, order_by, nil)
 
     header = [
       "Player",
