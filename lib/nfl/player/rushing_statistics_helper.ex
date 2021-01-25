@@ -25,11 +25,16 @@ defmodule Nfl.Player.RushingStatisticsHelper do
   def default_order_by(), do: @default_order_by_rule_key
 
   defp build_search_query_statement(name_prefix) do
-    pattern = "#{name_prefix}%"
+    sanitized_str = like_sanitize(name_prefix)
+    pattern = "#{sanitized_str}%"
 
     if name_prefix == "",
       do: RushingStatistics,
       else: from(s in RushingStatistics, where: ilike(s.name, ^pattern))
+  end
+
+  defp like_sanitize(query_str) do
+    String.replace(query_str, ~r/([\%_])/, "")
   end
 
   defp search_players(query, order_by_field \\ @default_order_by_rule_key) do
