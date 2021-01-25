@@ -44,7 +44,7 @@
 </form>
 
 <span> Displaying <%= Enum.count(@statistics) %> players. </span>
-<b> Add export CSV button (with icon)</b>
+<a href="/csv?<%= URI.encode_query(%{query: @query, order_by: @order_by}) %>" target="_blank">Download CSV</a>
 <table class="table table-striped">
   <thead>
     <tr>

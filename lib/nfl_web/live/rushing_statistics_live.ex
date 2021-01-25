@@ -38,7 +38,6 @@ defmodule NflWeb.RushingStatisticsLive do
          %{query: state_query, suggestions: suggestions} = assigns,
          %{"query" => query} = _form_data
        ) do
-
     if query != state_query do
       %{suggestions: RushingStatisticsHelper.name_suggestions(query)}
     else

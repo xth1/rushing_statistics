@@ -26,6 +26,7 @@ defmodule Nfl.Player.RushingStatisticsHelper do
 
   defp build_search_query_statement(name_prefix) do
     pattern = "#{name_prefix}%"
+
     if name_prefix == "",
       do: RushingStatistics,
       else: from(s in RushingStatistics, where: ilike(s.name, ^pattern))
