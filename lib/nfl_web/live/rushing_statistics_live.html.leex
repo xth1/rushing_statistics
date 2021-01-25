@@ -2,20 +2,23 @@
   <h1> Rushing statistics </h1>
 </div>
 
-<div class="row">
-  <div class="col-md-9 col-sm-6">
-    <form phx-change="suggest" phx-submit="search">
-      <div class="input-group">
+<b>searched_query</b>: <%= @query %>
 
+<form phx-change="change" phx-submit="search">
+  <div class="row">
+
+      <div class="col-md-9 col-sm-6">
+        <div class="input-group">
+            <%# <input type="hidden" name="last_query" value=""> %>
           <input
             type="text"
             class="form-control"
-            name="name"
+            name="query"
             placeholder="Player name"
             aria-label="Player name"
             list="suggestions"
             aria-describedby="basic-addon2"
-            phx-debounce="600"
+            phx-debounce="500"
             autocomplete="off">
           <datalist id="suggestions">
             <%= for %{name: name} <- @suggestions do %>
@@ -25,20 +28,20 @@
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
           </div>
+        </div>
       </div>
-    </form>
+      <div class="col-md-3 col-sm-6">
+        <div class="form-group row">
+          <label for="sortingSelectBox" class="col-3 col-form-label">Sort By</label>
+          <select id="sortingSelectBox" class="col-9 custom-select custom-select-lg" name="order_by">
+            <option selected value="yds">Yds</option>
+            <option value="lng">Lng</option>
+            <option value="td"> TD</option>
+          </select>
+        </div>
+      </div>
   </div>
-  <div class="col-md-3 col-sm-6">
-    <div class="form-group row">
-      <label for="sortingSelectBox" class="col-3 col-form-label">Sort By</label>
-      <select id="sortingSelectBox" class="col-9 custom-select custom-select-lg">
-        <option selected>Total Rushing Yards</option>
-        <option value="1">Longest Rush</option>
-        <option value="2"> Total Rushing Touchdowns</option>
-      </select>
-    </div>
-  </div>
-</div>
+</form>
 
 <span> Displaying <%= Enum.count(@statistics) %> players. </span>
 <b> Add export CSV button (with icon)</b>

@@ -21,6 +21,10 @@ defmodule Nfl.Repo.Migrations.CreatePlayerRushingStatistics do
 
       timestamps()
     end
+    create index("player_rushing_statistics", [:name])
+    create index("player_rushing_statistics", [:yds])
+    create index("player_rushing_statistics", [:td])
+    create index("player_rushing_statistics", [:lng])
   end
 
   def down do
