@@ -4,6 +4,7 @@ defmodule Nfl.Utils do
   def to_float(value) when is_float(value), do: value
 
   def to_float(value) when is_binary(value) do
+    value = String.replace(value, ",", "")
     {num, _} = Float.parse(value)
     num
   end
