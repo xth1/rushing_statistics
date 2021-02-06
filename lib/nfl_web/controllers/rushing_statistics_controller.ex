@@ -9,6 +9,10 @@ defmodule NflWeb.RushingStatisticsController do
     |> send_resp(200, generate_csv(query, order_by))
   end
 
+  def team_statistics(conn, _) do
+    render(conn, "team_statistics.html", statistics: RushingStatisticsHelper.yds_per_team()) # , error: 
+  end
+
   defp generate_csv(query, order_by) do
     {statistics, _} = RushingStatisticsHelper.by_name_prefix(query, order_by, nil)
 

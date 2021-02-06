@@ -5,7 +5,7 @@ defmodule Nfl.Player.RushingStatisticsHelper do
   # TODO: sanitize form parameters to avoid SQL injection atacks
   @order_by_rules %{
     "yds" => [desc: :yds],
-    "lng" => [desc: :lng],
+    "lng" => [desc: :lng, desc: :lng_td],
     "td" => [desc: :td]
   }
   @default_order_by_rule_key "yds"
@@ -22,6 +22,11 @@ defmodule Nfl.Player.RushingStatisticsHelper do
   end
 
   def default_order_by(), do: @default_order_by_rule_key
+
+  def yds_per_team() do
+    from(p in RushingStatistics, group_by: p.team, select: %{name: p.team, sum_yds: sum(p.yds), max_yds: max(p.yds)})
+    |> Repo.all()
+  end
 
   defp build_search_query_statement(name_prefix) do
     sanitized_str = like_sanitize(name_prefix)

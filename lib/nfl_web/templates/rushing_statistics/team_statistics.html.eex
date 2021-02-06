@@ -1,0 +1,12 @@
+<table>
+    <th> Team</th>
+    <th> Sum yds </th>
+    <th> Max yds </th>
+    <%= for team <- @statistics  do%>
+        <tr>
+            <td> <%= team[:name] %> </td>
+            <td> <%= team[:sum_yds] %> </td>
+            <td> <%= team[:max_yds] %> </td>
+        </tr>
+    <% end %>
+</table>
